@@ -1,26 +1,60 @@
 package com.alura.modelo;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
+
+import com.alura.ServicesDTO.Topico.ModificarTopicoRequest;
+import com.alura.ServicesDTO.Topico.NuevoTopicoRequest;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "topicos")
+@Data
+@NoArgsConstructor
 public class Topico {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@ManyToOne
+	private Usuario usuario;
+
 	private String titulo;
 	private String mensaje;
-	private LocalDateTime fechaCreacion = LocalDateTime.now();
-	private StatusTopico status = StatusTopico.NO_RESPONDIDO;
-	private Usuario autor;
+
+	@Temporal(TemporalType.TIME)
+	private Date fechaDeCreacion;
+
+	@Enumerated(EnumType.STRING)
+	private Estatus estatus;
+
+	@ManyToOne
 	private Curso curso;
-	private List<Respuesta> respuestas = new ArrayList<>();
 
-	public Topico(String titulo, String mensaje, Curso curso) {
-		this.titulo = titulo;
-		this.mensaje = mensaje;
+	@Enumerated(EnumType.STRING)
+	private Tag tag;
+
+	public Topico(NuevoTopicoRequest nuevoTopico, Usuario usuario, Curso curso) {
+		this.usuario = usuario;
+		this.titulo = nuevoTopico.titulo();
+		this.mensaje = nuevoTopico.mensaje();
+		this.fechaDeCreacion = new Date();
+		this.estatus = Estatus.SIN_RESPUESTAS;
 		this.curso = curso;
+		this.tag = nuevoTopico.tag();
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,29 +104,6 @@ public class Topico {
 		this.mensaje = mensaje;
 	}
 
-	public LocalDateTime getfechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setfechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public StatusTopico getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusTopico status) {
-		this.status = status;
-	}
-
-	public Usuario getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
-	}
 
 	public Curso getCurso() {
 		return curso;
@@ -102,12 +113,17 @@ public class Topico {
 		this.curso = curso;
 	}
 
-	public List<Respuesta> getRespuestas() {
-		return respuestas;
+	//modificar
+
+	public void modificar(ModificarTopicoRequest modificarTopico, Curso curso) {
+		this.titulo = modificarTopico.titulo();
+		this.mensaje = modificarTopico.mensaje();
+		this.tag = modificarTopico.tag();
+		this.curso = curso;
 	}
 
-	public void setRespuestas(List<Respuesta> respuestas) {
-		this.respuestas = respuestas;
+	//marcar resultado
+	public void marcarComoResuelto() {
+		this.estatus = Estatus.RESUELTO;
 	}
-
 }

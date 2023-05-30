@@ -1,15 +1,64 @@
 package com.alura.modelo;
 
-import java.time.LocalDateTime;
 
+import java.util.Date;
+
+import com.alura.ServicesDTO.Respuesta.ModificarRespuestaRequest;
+import com.alura.ServicesDTO.Respuesta.NuevaRespuestaRequest;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "respuestas")
+@Data
+@NoArgsConstructor
 public class Respuesta {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@ManyToOne
+	private Usuario usuario;
+
 	private String mensaje;
+
+	@Temporal(TemporalType.TIME)
+	private Date fechaDeCreacion;
+
+	private Boolean mejorRespuesta;
+
+	@ManyToOne
 	private Topico topico;
-	private LocalDateTime fechaCreacion = LocalDateTime.now();
-	private Usuario autor;
-	private Boolean solucion = false;
+
+
+
+
+	public Respuesta(NuevaRespuestaRequest nuevaRespuesta, Usuario usuario, Topico topico) {
+		this.usuario = usuario;
+		this.mensaje = nuevaRespuesta.mensaje();
+		this.fechaDeCreacion = new Date();
+		this.mejorRespuesta = false;
+		this.topico = topico;
+	}
+
+		public void modificar(ModificarRespuestaRequest modificarRespuesta) {
+		this.mensaje = modificarRespuesta.mensaje();
+	}
+
+	public void marcarComoSolucion() {
+		this.mejorRespuesta = true;
+	}
 
 	@Override
 	public int hashCode() {
@@ -60,28 +109,5 @@ public class Respuesta {
 		this.topico = topico;
 	}
 
-	public LocalDateTime getfechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setfechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public Usuario getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
-	}
-
-	public Boolean getSolucion() {
-		return solucion;
-	}
-
-	public void setSolucion(Boolean solucion) {
-		this.solucion = solucion;
-	}
 
 }

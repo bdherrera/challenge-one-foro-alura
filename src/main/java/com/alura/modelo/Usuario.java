@@ -1,11 +1,96 @@
 package com.alura.modelo;
+import java.util.Collection;
+import java.util.List;
 
-public class Usuario {
+import com.alura.ServicesDTO.usuario.ActualizarUsuarioRequest;
+import com.alura.ServicesDTO.usuario.ModificarRolUsuarioRequest;
+import com.alura.ServicesDTO.usuario.RegistroUsuarioRequest;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "usuarios")
+@Data
+@NoArgsConstructor
+public class Usuario implements UserDetails {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
+
 	private String email;
-	private String contrasena;
+	private String password;
+
+	private Boolean activo;
+
+	@Enumerated(EnumType.STRING)
+	private Rol rol;
+
+
+	public Usuario(RegistroUsuarioRequest registroUsuario) {
+		this.email = registroUsuario.email();
+		this.password = new BCryptPasswordEncoder().encode(registroUsuario.password());
+		this.activo = true;
+		this.rol = Rol.USUARIO;
+	}
+
+	public void actualizar(ActualizarUsuarioRequest actualizar) {
+		this.email = actualizar.email();
+		this.password = new BCryptPasswordEncoder().encode(actualizar.password());
+	}
+
+	public void modificar(ModificarRolUsuarioRequest modificarRolUsuario) {
+		this.rol = modificarRolUsuario.rol();
+	}
+
+	public void desactivar() {
+		this.activo = false;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_" + this.rol.toString()));
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.activo;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -40,13 +125,7 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public String getEmail() {
 		return email;
@@ -56,12 +135,6 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getContrasena() {
-		return contrasena;
-	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
 
 }
