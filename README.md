@@ -19,7 +19,7 @@
 
 - ### Tecnologías utilizadas:
 
-  - [Eclipse](https://www.eclipse.org/)
+  - [intelij](https://www.jetbrains.com/es-es/idea/)
   - [MySql](https://www.mysql.com/)
   - [Java](https://www.java.com/en/)
 
@@ -63,72 +63,40 @@
 2 - La segunda opción es descargar el código en un paquete <strong>"zipado"</strong> y extraer la carpeta a tu computadora.
 </br></br>
 
-## 📝 Eclipse
+## Caracteristicas
 
-### ¿Cómo importar mi proyecto a Eclipse?
+- API REST
+- CRUD de usuarios
+- CRUD de categorias y cursos
+- CRUD de topicos y respuestas
+- Rol de USUARIO y ADMIN
+- Seguridad por medio de Token JWT
+- Documentacion con Spring Docs
+## Instalacion
 
-1 - Una vez dentro del Editor al lado izquierdo, haz clic en el <em>Files</em> que está en el menú en la parte superior, elige la opción <em>Open Projects from File System</em>.
+Para ejecutar este repositorio realice los siguientes pasos:
 
-<p align="center" >
-     <img width="400" heigth="400" src="https://user-images.githubusercontent.com/101413385/173164237-1db32d79-2b35-433f-817c-ec3fa30899fc.png">
-</p>
+1. Clone el repositorio en donde guste
+2. Ejecute script.sql para realizar la creacion de la base de datos que se utilizara a futuro
+3. Importe el proyecto en  su IED de desarrollo  y desplieguelo
+4. En su navegador digijase a [aqui](http://localhost:8181/swagger-ui/index.html) para leer la documentacion de los endpoints del proyecto
+5. Disfrute la API REST
 
-Luego haz click en <em>Directory</em> y ubica el directorio del proyecto "clonado" o "extraído" en tu computadora. Haz click en <em>Finish</em> para completar la importación.
+## Documentacion
 
-<p align="center" >
-     <img width="600" heigth="600" src="https://user-images.githubusercontent.com/78982435/209683881-aa94b361-d63e-4d78-b5db-d5215b350efa.png">
-</p>
+Toda la documentacion del funcionamiento de los endpoints de API se puede encontrar la url de Spring Docs una vez que el proeycto esta corriendo
+http://localhost:8181/swagger-ui/index.html
 
-2 - La segunda forma de importar es en <em>File</em> en la opción <em>Import</em>. O a través del <strong>Project Explorer</strong> haz clic en el campo vacío con el botón derecho del mouse y elijas la opción <strong>Import</strong>.
+**Algunas cosas a tener en cuenta**
 
-<p align="center" >
-     <img width="400" heigth="400" src="https://user-images.githubusercontent.com/101413385/173111357-2ec928ac-5a3d-4f7c-ba84-8906d84bfd08.png">
-</p>
+A la hora de registrar usuarios, el rol otorgado por defecto es USUARIO
+La unica excepcion a esto es si no hay usuario en la base de datos que el primer usuario se creara con el rol ADMIN
 
-<p align="center" >
-     <img width="400" heigth="400" src="https://user-images.githubusercontent.com/101413385/169431325-23a2e3cb-85a3-4298-8e60-64dfa58e2e6f.png">
-</p>
 
-Si te decides por el <strong>Import</strong>, se abrirá la ventana correspondiente. Haz clic en la opción <em>Existing Projects Into Workspace</em> y en el botón <em>Next</em>.
+## Contactame
 
-<p align="center" >
-     <img width="600" heigth="600" src="https://user-images.githubusercontent.com/101413385/169431890-27f40955-27d8-4b4d-82df-d3507f85de6c.png">
-</p>
-
-Luego haz clic en el botón <em>Browse</em> y busca el proyecto en el directorio local.
-
-<p align="center" >
-     <img width="600" heigth="600" src="https://user-images.githubusercontent.com/78982435/209683946-24a7a3c1-8170-4280-8047-5eb70cba7a9b.png">
-</p>
-
-## 🚧¿Cómo incluir mi proyecto en este Challenge?
-
-1. Publicar el proyecto en GitHub;
-2. Utiliza el tema/topic:
-   - *Grupo 4: **challengeforoalura4**;*
-   - Ve a la pestaña "`Acerca`" o `"About"` de tu proyecto en el menú de la izquierda dentro de tu repositorio de GitHub Incluye la etiqueta *"**challengeforoalura4**"*.
-
-![11 gif - github](https://user-images.githubusercontent.com/78982435/209682261-a06b735c-0752-48ad-bbd3-5784e4f6d7ef.gif)
-
-## 📬¿Cómo hago la entrega final de mi proyecto?
-
-1. Coloca tus datos en el formulario de entrega con el **link del proyecto publicado en GitHub** 
-🔹 [Enlace al fomulario](https://lp.alura.com.br/alura-latam-entrega-challenge-one-esp-back-end)
-
-   <p align="center" >
-     <img width="700" heigth="700" src="https://user-images.githubusercontent.com/91544872/216698915-e0d26701-44e6-4e81-8c33-211790c52f27.png">
-</p>
-
-2. Accede a tu correo electrónico para conseguir tu Insignia Exclusiva para este desafío 🏆
-
-3. ¡No olvides publicar un link o un vídeo de tu proyecto en [Linkedin](https://www.linkedin.com/company/alura-latam/mycompany/)! 🏁
-
-💙 Alura Latam
-
-[![img](https://camo.githubusercontent.com/c00f87aeebbec37f3ee0857cc4c20b21fefde8a96caf4744383ebfe44a47fe3f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d2532333030373742353f7374796c653d666f722d7468652d6261646765266c6f676f3d6c696e6b6564696e266c6f676f436f6c6f723d7768697465)](https://www.linkedin.com/company/alura-latam/mycompany/)
-
-🧡 Oracle
-
-[![img](https://camo.githubusercontent.com/c00f87aeebbec37f3ee0857cc4c20b21fefde8a96caf4744383ebfe44a47fe3f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d2532333030373742353f7374796c653d666f722d7468652d6261646765266c6f676f3d6c696e6b6564696e266c6f676f436f6c6f723d7768697465)](https://www.linkedin.com/company/oracle/)
-
+- [Github](https://github.com/bdherrera)
+- [Linkedin](https://www.linkedin.com/in/brayan-david-herrera-acero-7878b9232?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BuyU%2Fe0ZXR9O%2BcNq3wLlQ%2Fg%3D%3D)
+- [Instagram](https://www.instagram.com/dav1_327/)
+- [eMail](mailTo:davidhb944@gmail.com)
 
