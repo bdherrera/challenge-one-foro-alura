@@ -1,0 +1,2 @@
+create database foro_alura;
+use foro_alura;
