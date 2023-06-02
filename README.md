@@ -19,7 +19,7 @@
 
 - ### Tecnologías utilizadas:
 
-  - [Eclipse](https://www.eclipse.org/)
+  - [Intellij](https://www.jetbrains.com/es-es/idea/)
   - [MySql](https://www.mysql.com/)
   - [Java](https://www.java.com/en/)
 
