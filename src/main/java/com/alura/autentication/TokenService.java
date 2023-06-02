@@ -18,7 +18,7 @@ public class TokenService {
     @Value("${api.security.secret}")
     private String apiSecret;
 
-    final String issuer = "David Rolon";
+    final String issuer = "David herrera";
     final int horasAdicionales = 24;
 
     public String generarToken(Usuario usuario) {
@@ -43,7 +43,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             decodificador = JWT.require(algorithm)
-                    .withIssuer("David Rolon")
+                    .withIssuer("David herrera")
                     .build()
                     .verify(token);
             decodificador.getSubject();
