@@ -63,9 +63,9 @@
 2 - La segunda opción es descargar el código en un paquete <strong>"zipado"</strong> y extraer la carpeta a tu computadora.
 </br></br>
 
-## 📝 Eclipse
+## 📝 Intellij
 
-### ¿Cómo importar mi proyecto a Eclipse?
+### ¿Cómo importar mi proyecto a Intellij?
 
 1 - Una vez dentro del Editor al lado izquierdo, haz clic en el <em>Files</em> que está en el menú en la parte superior, elige la opción <em>Open Projects from File System</em>.
 
